@@ -35,24 +35,25 @@ class App extends Component {
 ]}
 
   deleteTask = (id) => {
-    console.log('delete' + id);
     const tasks = [...this.state.tasks]
-    console.log(tasks);
+
     const index = tasks.filter(task => task.id === id)
-    console.log(index);
+
     const deleteTask = tasks.splice(index, 1)
-    console.log(tasks);
+    console.log(index);
+
     this.setState({
       tasks
     })
   }
   handleChangeTaskStatus = (id) => {
-    console.log('done' + id);
-    const tasks = [this.state.tasks]
+    console.log('done'  + id);
+    const tasks = [...this.state.tasks]
     tasks.map(task => {
       if (task.id === id) {
           task.active = false;
           task.finishDate = new Date().getTime()
+          console.log(task.active);
         }
     })
     this.setState({
