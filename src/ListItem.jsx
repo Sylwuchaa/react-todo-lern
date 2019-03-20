@@ -7,6 +7,7 @@ export const ListItem = (props) => {
   const done = props.tasks.filter(task => task.active === false )
   const activeTasks = active.map(task => <Item key={task.id} task={task} text={task.text} date={task.date} delete={props.delete} change={props.change} />)
   const doneTasks = done.map(task => <Item key={task.id} task={task} text={task.text} date={task.date} delete={props.delete} change={props.change}/>)
+
   return (
     <>
     <div>
@@ -16,7 +17,8 @@ export const ListItem = (props) => {
   <hr />
     <div>
       <h3>Zadania zrobione ({doneTasks.length})</h3>
-      {doneTasks.slice(0, 2)}
+      {doneTasks.length > 3 ? <p><span style={{fontSize: 10}}>Wyświetlane są ostatnie 3 zadania</span></p> : null}
+      {doneTasks.slice(0, 3)}
     </div>
     </>
     );

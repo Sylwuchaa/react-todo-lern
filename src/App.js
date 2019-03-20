@@ -1,6 +1,8 @@
 import React, { Component} from 'react';
 import './App.css';
 import {ListItem} from './ListItem';
+
+import {AddTask} from './AddTask';
 class App extends Component {
   state = {
   tasks: [{
@@ -15,33 +17,30 @@ class App extends Component {
     text: 'nauczyć się TypeScripta',
     active: true,
     date: '2019-04-30',
-    important: true,
+    important: false,
     finishDate: null,
   },{
     id: 2,
     text: 'kupić rower',
     active: true,
     date: '2019-06-30',
-    important: true,
+    important: false,
     finishDate: null,
   },{
-    id: 3,
+    id: 5,
     text: 'naprawić samochód',
     active: true,
     date: '2019-05-30',
     important: true,
     finishDate: null,
-  }
+  },
 ]}
 
   deleteTask = (id) => {
     const tasks = [...this.state.tasks]
-
-    const index = tasks.filter(task => task.id === id)
-
+    const index = tasks.findIndex(task => task.id === id)
     const deleteTask = tasks.splice(index, 1)
     console.log(index);
-
     this.setState({
       tasks
     })
@@ -62,8 +61,11 @@ class App extends Component {
   }
   render() {
     return (
-      <ListItem tasks={this.state.tasks} change={this.handleChangeTaskStatus} delete={this.deleteTask} />
-    );
+      <>
+        <AddTask />
+        <ListItem tasks={this.state.tasks} change={this.handleChangeTaskStatus} delete={this.deleteTask} />
+      </>
+    )
   }
 }
 
