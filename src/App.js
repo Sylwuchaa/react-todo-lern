@@ -4,6 +4,7 @@ import {ListItem} from './ListItem';
 
 import {AddTask} from './AddTask';
 class App extends Component {
+  counter = 4
   state = {
   tasks: [{
     id: 0,
@@ -27,7 +28,7 @@ class App extends Component {
     important: false,
     finishDate: null,
   },{
-    id: 5,
+    id: 3,
     text: 'naprawić samochód',
     active: true,
     date: '2019-05-30',
@@ -59,10 +60,27 @@ class App extends Component {
       tasks
     })
   }
+  addTask = (text, date, important) => {
+    const task = {
+      id: this.counter,
+      text: text,
+      active: true,
+      date: date,
+      important: important,
+      active: true,
+      finishDate: null,
+    }
+    this.setState(prevState => ({
+      tasks: [...prevState.tasks, task]
+    }))
+    this.counter++
+    console.log(task, this.counter);
+    return true
+  }
   render() {
     return (
       <>
-        <AddTask />
+        <AddTask add={this.addTask}/>
         <ListItem tasks={this.state.tasks} change={this.handleChangeTaskStatus} delete={this.deleteTask} />
       </>
     )

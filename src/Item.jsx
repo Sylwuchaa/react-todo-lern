@@ -6,7 +6,7 @@ export const Item = (props) => {
   const redStyle = {
     color: 'red'
   }
-  const actualDate = new Date(finishDate).toLocaleTimeString()
+  const actualDate = new Date(finishDate).toLocaleString()
 
 
   if(active) {
